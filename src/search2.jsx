@@ -2,29 +2,27 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
-// 模拟一个延时加载的过程，用于演示
-function sleep(duration) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, duration);
-  });
-}
-
+count [selectedPlayer, set_selectedPlayer] = useState({ 'account_id': '', 'nickname': '' });
 // 异步加载的自动补全组件
 export default function Asynchronous(value) {
   const [InputValue, setInputValue] = useState("");
   const [Player_name_list, set_Player_name_list] = useState([]);
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [final_player_info, set_final_player_info] = useState({ 'account_id': '', 'nickname': '' });
+  const [fetchIsLoading, setFetchIsLoading] = useState(false);
 
 
   // 标识是否正在加载选项数据,open为true时且options为空数组时，为true,其他情况全为false
-  const loading = open && Player_name_list.length === 0;
+  const loading = open && fetchIsLoading;
+  React.useEffect(() => {
+    console.log("loading", loading);
+  }, [loading]);
 
   const onChangeHandler = function (value) {
     console.log("开始fetch");
+    setFetchIsLoading(true);
     const url = new URL("https://api.worldofwarships.asia/wows/account/list/");
     url.searchParams.append(
       "application_id",
@@ -38,46 +36,31 @@ export default function Asynchronous(value) {
         .then((response) => response.json())
         .then((data) => {
           if (data.status === "ok") {
+            console.log(data.data);
             set_Player_name_list(data.data);
+            setFetchIsLoading(false);
           }
         })
-        .catch(() => {
-          console.log("fetch error");
+        .catch((data) => {
+          console.log("fetch error", data);
         });
     }
   };
 
-  // 控制自动补全组件的打开状态
-  // 存储选项数据
-  const [options, setOptions] = React.useState([]);
-
-  // 当加载状态发生变化时，根据加载状态更新选项数据
   React.useEffect(() => {
-    console.log("loading", loading);
-    let active = true;
 
-    if (!loading) {
-      return undefined;
+    if (InputValue.length >= 3) {
+      onChangeHandler(InputValue);
+    }
+    else {
+      set_Player_name_list([])
     }
 
-    // (async () => {
-    //   //   await sleep(1e3); // 演示目的，模拟延时加载
+  }, [InputValue])
 
-    //   if (active) {
-    //     setOptions([...topFilms]);
-    //   }
-    // })();
-
-    else{
-        if (InputValue.length >= 3) {
-            onChangeHandler(InputValue);
-        }
-    }
-
-    return () => {
-      active = false;
-    };
-  }, [loading, InputValue]);
+  React.useEffect(() => {
+    console.log("final_player_info", final_player_info);
+  }, [final_player_info]);
 
   // 当组件打开状态发生变化时，根据打开状态清空选项数据
   React.useEffect(() => {
@@ -99,14 +82,18 @@ export default function Asynchronous(value) {
         setOpen(false);
       }}
       onInputChange={(event, newInputValue) => {
-        console.log(newInputValue.length)
-        if (newInputValue.length >= 3) {
-          setInputValue(newInputValue);
-        //   onChangeHandler(InputValue);
-        }
+        setInputValue(newInputValue);
       }}
-      isOptionEqualToValue={(Player_name_list, value) =>
-        Player_name_list.nickname === value.title
+      onChange={(event, value) => {
+        set_final_player_info({ 'account_id': value.account_id, 'nickname': value.nickname })
+      }}
+      // noOptionsText={() => {
+      //   return Player_name_list.length != 0 ? '没有找到该玩家' : '请输入至少3个字符'
+      // }} 
+      isOptionEqualToValue={(Player_name_list, value) => {
+        return Player_name_list.nickname === value.nickname
+      }
+
       }
       getOptionLabel={(Player_name_list) => Player_name_list.nickname}
       options={Player_name_list}
