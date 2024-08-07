@@ -8,7 +8,6 @@ const Api_links = {
   PATH_ADDRESS: {
     Account: {
       Players: "/wows/account/list/",
-
       Player_personal_data: "/wows/account/info/",
       Players_achievements: "/wows/account/achievements/",
       Player_statistics_by_date: "/wows/account/statsbydate/",
