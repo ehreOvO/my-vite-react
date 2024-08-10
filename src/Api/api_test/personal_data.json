@@ -1,0 +1,102 @@
+{
+    "status": "ok",
+    "meta": {
+        "count": 1,
+        "hidden": null
+    },
+    "data": {
+        "2024794880": {
+            "last_battle_time": 1723297073,
+            "account_id": 2024794880,
+            "leveling_tier": 17,
+            "created_at": 1572939765,
+            "leveling_points": 5448,
+            "updated_at": 1723298270,
+            "private": null,
+            "hidden_profile": false,
+            "logout_at": 1723298081,
+            "karma": null,
+            "statistics": {
+                "distance": 174825,
+                "battles": 5359,
+                "pvp": {
+                    "max_xp": 4404,
+                    "damage_to_buildings": 0,
+                    "main_battery": {
+                        "max_frags_battle": 6,
+                        "frags": 1310,
+                        "hits": 126121,
+                        "max_frags_ship_id": 3767449584,
+                        "shots": 407164
+                    },
+                    "max_ships_spotted_ship_id": 3667900112,
+                    "max_damage_scouting": 244405,
+                    "art_agro": 2423798634,
+                    "max_xp_ship_id": 4276041424,
+                    "ships_spotted": 4122,
+                    "second_battery": {
+                        "max_frags_battle": 1,
+                        "frags": 22,
+                        "hits": 7327,
+                        "max_frags_ship_id": 3530504176,
+                        "shots": 40312
+                    },
+                    "max_frags_ship_id": 4185798448,
+                    "xp": 4829301,
+                    "survived_battles": 1282,
+                    "dropped_capture_points": 0,
+                    "max_damage_dealt_to_buildings": 0,
+                    "torpedo_agro": 153595274,
+                    "draws": 1,
+                    "control_captured_points": 30585,
+                    "battles_since_510": 2945,
+                    "max_total_agro_ship_id": 3760142288,
+                    "planes_killed": 9996,
+                    "battles": 2945,
+                    "max_ships_spotted": 12,
+                    "max_suppressions_ship_id": null,
+                    "survived_wins": 926,
+                    "frags": 2148,
+                    "damage_scouting": 79328963,
+                    "max_total_agro": 5412900,
+                    "max_frags_battle": 7,
+                    "capture_points": 0,
+                    "ramming": {
+                        "max_frags_battle": 1,
+                        "frags": 27,
+                        "max_frags_ship_id": 4078352176
+                    },
+                    "suppressions_count": 0,
+                    "max_suppressions_count": 0,
+                    "torpedoes": {
+                        "max_frags_battle": 4,
+                        "frags": 240,
+                        "hits": 1606,
+                        "max_frags_ship_id": 4075697872,
+                        "shots": 24761
+                    },
+                    "max_planes_killed_ship_id": 4182685680,
+                    "aircraft": {
+                        "max_frags_battle": 4,
+                        "frags": 312,
+                        "max_frags_ship_id": 4185896752
+                    },
+                    "team_capture_points": 322098,
+                    "control_dropped_points": 18792,
+                    "max_damage_dealt": 257066,
+                    "max_damage_dealt_to_buildings_ship_id": null,
+                    "max_damage_dealt_ship_id": 4179572688,
+                    "wins": 1458,
+                    "losses": 1486,
+                    "damage_dealt": 181277659,
+                    "max_planes_killed": 58,
+                    "max_scouting_damage_ship_id": 4074747856,
+                    "team_dropped_capture_points": 189926,
+                    "battles_since_512": 2945
+                }
+            },
+            "nickname": "die_ehre",
+            "stats_updated_at": 1723298270
+        }
+    }
+}

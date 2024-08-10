@@ -1,12 +1,14 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import Button from '@mui/material/Button';
 import CircularProgress from "@mui/material/CircularProgress";
 import { useState } from "react";
+import { Paper } from "@mui/material";
 
-count [selectedPlayer, set_selectedPlayer] = useState({ 'account_id': '', 'nickname': '' });
+// const [selectedPlayer, set_selectedPlayer] = useState({ 'account_id': '', 'nickname': '' });
 // 异步加载的自动补全组件
-export default function Asynchronous(value) {
+export default function Asynchronous() {
   const [InputValue, setInputValue] = useState("");
   const [Player_name_list, set_Player_name_list] = useState([]);
   const [open, setOpen] = React.useState(false);
@@ -47,6 +49,7 @@ export default function Asynchronous(value) {
     }
   };
 
+
   React.useEffect(() => {
 
     if (InputValue.length >= 3) {
@@ -71,51 +74,60 @@ export default function Asynchronous(value) {
 
   // 渲染异步加载的自动补全组件
   return (
-    <Autocomplete
-      id="asynchronous-demo"
-      sx={{ width: 200 }}
-      open={open}
-      onOpen={() => {
-        setOpen(true);
-      }}
-      onClose={() => {
-        setOpen(false);
-      }}
-      onInputChange={(event, newInputValue) => {
-        setInputValue(newInputValue);
-      }}
-      onChange={(event, value) => {
-        set_final_player_info({ 'account_id': value.account_id, 'nickname': value.nickname })
-      }}
-      // noOptionsText={() => {
-      //   return Player_name_list.length != 0 ? '没有找到该玩家' : '请输入至少3个字符'
-      // }} 
-      isOptionEqualToValue={(Player_name_list, value) => {
-        return Player_name_list.nickname === value.nickname
-      }
+    <Paper>
+      <Autocomplete
+        id="asynchronous-demo"
+        sx={{ width: 200 }}
+        // 提示框开关的处理
+        open={open}
+        onOpen={() => {
+          setOpen(true);
+        }}
+        onClose={() => {
+          setOpen(false);
+        }}
+        // 输入框内容变化时，设置输入框内容，触发inputValue监控
+        onInputChange={(event, newInputValue) => {
+          setInputValue(newInputValue);
+        }}
+        // 选定后设置选定的选项
+        onChange={(event, value) => {
+          set_final_player_info({ 'account_id': value.account_id, 'nickname': value.nickname })
+        }}
 
-      }
-      getOptionLabel={(Player_name_list) => Player_name_list.nickname}
-      options={Player_name_list}
-      loading={loading}
-      autoHighlight={true}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          label="Player_name"
-          InputProps={{
-            ...params.InputProps,
-            endAdornment: (
-              <React.Fragment>
-                {loading ? (
-                  <CircularProgress color="inherit" size={20} />
-                ) : null}
-                {/* {params.InputProps.endAdornment} */}
-              </React.Fragment>
-            ),
-          }}
-        />
-      )}
-    />
+        // 子组件向父组件回传选中项
+        // onValueSelect = {handleValueSelect}
+
+        // 判定输入值是否有匹配的选项
+        isOptionEqualToValue={(Player_name_list, value) => {
+          return Player_name_list.nickname === value.nickname
+        }}
+        
+        getOptionLabel={(Player_name_list) => Player_name_list.nickname}
+        // 渲染选项
+        options={Player_name_list}
+        loading={loading}
+        autoHighlight={true}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Player_name"
+            InputProps={{
+              ...params.InputProps,
+              endAdornment: (
+                <React.Fragment>
+                  {loading ? (
+                    <CircularProgress color="inherit" size={20} />
+                  ) : null}
+                  {console.log('params:::',params)}
+                </React.Fragment>
+              ),
+            }}
+          />
+        )}
+      />
+      <Button variant="contained">Contained</Button>
+    </Paper>
+
   );
 }
