@@ -4,6 +4,7 @@ const Api_links = {
     asia: "https://api.worldofwarships.asia/",
     eu: "https://api.worldofwarships.eu/",
     na: "https://api.worldofwarships.com/",
+    
   },
 
   PATH_ADDRESS: {
