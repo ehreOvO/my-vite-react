@@ -7,7 +7,6 @@ import Api_links from "./Api_links";
 export default function Test() {
     const [data, setData] = useState({})
     const [ccc, setCcc] = useState('')
-    let t = 1
 
     useEffect(() => {
         // eslint-disable-next-line no-unused-vars
@@ -23,8 +22,6 @@ export default function Test() {
         }
     }, [])
     useEffect(() => {
-        console.log('t', t)
-        t++
         console.log('JSON.stringify(data)', JSON.stringify(data))
         console.log('data', data)
         setCcc(JSON.stringify(data))
