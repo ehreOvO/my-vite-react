@@ -23,18 +23,21 @@ const Use_Api = async function (servers, pathname, params) {
     if (params.in_garage) { url.searchParams.append("in_garage", params.in_garage) }
     if (params.season_id) { url.searchParams.append("season_id", params.season_id) }
 
-    console.log('---请求的url是：', url.href)
+    console.log('---请求的url是：', url.search)
 
 
     const response = await fetch(url);
     const data = await response.json();
 
     if (data.status === "ok") {
-        return data.data;
-    } else {
-        throw new Error(`API returned an error: ${data.message || 'Unknown error'}`);
+        console.log('---请求成功，返回的数据是：', data.data)
+    }else {
+        console.warn('请求失败，返回的数据是：', data.error)
     }
-    // return url.href
+    return data;
+
+    
+
 }
 
 export default Use_Api

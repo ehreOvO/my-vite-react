@@ -1,0 +1,6 @@
+console.debug('debug')
+console.error('err')
+console.warn('warn')
+console.info('info')
+console.log('log')
+console.trace('trace')

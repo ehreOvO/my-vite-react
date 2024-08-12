@@ -1,14 +1,14 @@
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-unused-vars */
 import React from 'react'
-import Asynchronous from './search'
+import Search_bar from './search'
 import Test from './Api/test'
 
 function App() {
 
   return (
     <>
-     {/* <Asynchronous /> */}
-     <Test />
+     <Search_bar />
+
     </>
   )
 }

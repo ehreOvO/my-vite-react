@@ -9,8 +9,6 @@ export default function Test() {
     const [ccc, setCcc] = useState('')
 
     useEffect(() => {
-        // eslint-disable-next-line no-unused-vars
-        let isMounted = true; // 标记是否已卸载
 
         const fetchdata = async () => {
             const result = await Use_Api('asia', Api_links.PATH_ADDRESS.Account.Players,{ search: 'die_ehre',account_id:2024794880 });
@@ -18,12 +16,12 @@ export default function Test() {
         }
         fetchdata()
         return () => {
-            isMounted = false;
+            console.log('useEffect return')
         }
     }, [])
     useEffect(() => {
-        console.log('JSON.stringify(data)', JSON.stringify(data))
-        console.log('data', data)
+        // console.log('JSON.stringify(data)', JSON.stringify(data))
+        // console.log('data', data)
         setCcc(JSON.stringify(data))
     }, [data])
 
