@@ -11,13 +11,14 @@ import { Player_id_globle } from "./contents/content";
 // const [selectedPlayer, set_selectedPlayer] = useState({ 'account_id': '', 'nickname': '' });
 // 异步加载的自动补全组件
 export default function Search_bar() {
-
   const [InputValue, setInputValue] = useState("");
   const [Player_name_list, set_Player_name_list] = useState([]);
   const [open, setOpen] = React.useState(false);
-  const [final_player_info, set_final_player_info] = useState({ 'account_id': '', 'nickname': '' });
+  const [final_player_info, set_final_player_info] = useState({
+    account_id: "",
+    nickname: "",
+  });
   const [fetchIsLoading, setFetchIsLoading] = useState(false);
-
 
   // 标识是否正在加载选项数据,open为true时且options为空数组时，为true,其他情况全为false
   const loading = open && fetchIsLoading;
@@ -52,20 +53,16 @@ export default function Search_bar() {
     }
   };
 
-
   React.useEffect(() => {
-
     if (InputValue.length >= 3) {
       onChangeHandler(InputValue);
+    } else {
+      set_Player_name_list([]);
     }
-    else {
-      set_Player_name_list([])
-    }
-
-  }, [InputValue])
+  }, [InputValue]);
 
   React.useEffect(() => {
-    if (final_player_info.account_id ) return
+    if (final_player_info.account_id) return;
     console.log("final_player_info", final_player_info);
   }, [final_player_info]);
 
@@ -97,17 +94,18 @@ export default function Search_bar() {
           }}
           // 选定后设置选定的选项
           onChange={(event, value) => {
-            set_final_player_info({ 'account_id': value.account_id, 'nickname': value.nickname })
+            set_final_player_info({
+              account_id: value.account_id,
+              nickname: value.nickname,
+            });
           }}
-
           // 子组件向父组件回传选中项
           // onValueSelect = {handleValueSelect}
 
           // 判定输入值是否有匹配的选项
           isOptionEqualToValue={(Player_name_list, value) => {
-            return Player_name_list.nickname === value.nickname
+            return Player_name_list.nickname === value.nickname;
           }}
-
           getOptionLabel={(Player_name_list) => Player_name_list.nickname}
           // 渲染选项
           options={Player_name_list}
@@ -132,10 +130,10 @@ export default function Search_bar() {
           )}
         />
         {/* <Button variant="contained">Contained</Button> */}
+        <Player_id_globle.Provider value={final_player_info.account_id}>
+          <Wws_me />
+        </Player_id_globle.Provider>
       </Paper>
-      <Player_id_globle.Provider value={final_player_info.account_id}>
-        <Wws_me />
-      </Player_id_globle.Provider>
     </React.Fragment>
   );
 }
