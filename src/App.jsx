@@ -6,13 +6,13 @@ import init from './Api/init'
 import { Wows_numbers_api } from './contents/content'
 
 function App() {
-  const i = init()
-  console.log('App的i：'+i)
+  // const i = init()
+  // console.log('App的i：'+i)
 
   return (
-    <Wows_numbers_api.Provider value={{i}}>
+    // <Wows_numbers_api.Provider value={{i}}>
      <Search_bar />
-    </Wows_numbers_api.Provider>
+    // </Wows_numbers_api.Provider>
   )
 }
 

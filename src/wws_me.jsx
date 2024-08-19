@@ -5,7 +5,6 @@ import { useContext } from "react";
 import { Player_id_globle } from "./contents/content";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
-import { Language } from "@mui/icons-material";
 
 export default function Wws_me() {
   const [Player_base_data, setPlayer_base_data] = React.useState({});
@@ -44,7 +43,7 @@ export default function Wws_me() {
       setPlayer_win_rate(
         (statistics.pvp.wins / statistics.pvp.battles).toFixed(4) * 100 + "%"
       );
-    }, [Player_base_data]);
+    }, []);
 
     return (
       <>
